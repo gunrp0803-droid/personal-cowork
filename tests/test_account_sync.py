@@ -96,14 +96,48 @@ class AccountSyncTests(unittest.TestCase):
             after = json.loads(overlay[name])
             after.pop("version")
             before.pop("version")
-            if name == "plugin.json":
-                self.assertEqual(after.pop("repository"), sync.REPOSITORY)
+            self.assertEqual(after.pop("repository"), sync.REPOSITORY)
             self.assertEqual(after, before)
         root = json.loads(overlay["plugin.json"])
         self.assertEqual(root["extensions"]["com.openai"]["interface"]["defaultPrompt"], ["Second", "First"])
         self.assertEqual(json.loads(overlay[".codex-plugin/plugin.json"])["interface"]["defaultPrompt"], "Original string")
         self.assertIn("assets/existing-binary.png", report["preserved_paths"])
         self.assertEqual(self.current, old)
+
+    def test_existing_repository_is_preserved_and_missing_legacy_repository_copies_root(self):
+        root = json.loads(self.current["contents"]["plugin.json"])
+        root["repository"] = "https://github.com/owner/existing-repository"
+        self.current_text("plugin.json", json.dumps(root))
+        report, overlay = self.prepare()
+        self.assertEqual(json.loads(overlay["plugin.json"])["repository"], root["repository"])
+        self.assertEqual(json.loads(overlay[".codex-plugin/plugin.json"])["repository"], root["repository"])
+        state = self.apply(report, overlay)
+        repeat, overlay = self.prepare(state)
+        self.assertEqual(repeat["status"], "noop")
+        self.assertEqual(overlay, {})
+        legacy = json.loads(self.current["contents"][".codex-plugin/plugin.json"])
+        legacy["repository"] = "https://github.com/owner/legacy-repository"
+        self.current_text(".codex-plugin/plugin.json", json.dumps(legacy))
+        self.source_version("0.3.0")
+        report, overlay = self.prepare()
+        self.assertEqual(json.loads(overlay[".codex-plugin/plugin.json"])["repository"], legacy["repository"])
+
+    def test_normal_token_named_files_are_included_and_sensitive_token_names_are_excluded(self):
+        references = self.skill / "references"
+        references.mkdir()
+        guide = references / "token-efficiency.md"
+        guide.write_text("Token efficiency guide\n")
+        tokenizer = self.skill / "scripts" / "tokenizer.py"
+        tokenizer.write_text("# Tokenizer source is packaged as data\n")
+        sensitive = (".token", "token.json", "tokens.json", "token.txt", "access_token.json", "refresh-token.yaml")
+        for name in sensitive:
+            (self.skill / name).write_text("sensitive data\n")
+        report, overlay = self.prepare()
+        self.assertIn("skills/personal-cowork/references/token-efficiency.md", overlay)
+        self.assertIn("skills/personal-cowork/scripts/tokenizer.py", overlay)
+        self.assertEqual(overlay["skills/personal-cowork/references/token-efficiency.md"], guide.read_bytes())
+        for name in sensitive:
+            self.assertNotIn("skills/personal-cowork/" + name, report["state_candidate"]["skill_hashes"])
 
     def test_new_payload_uses_source_version_or_increments_current_patch(self):
         for source_version, account_version, expected in (("0.2.0", "0.1.0", "0.2.0"),

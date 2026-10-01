@@ -82,7 +82,8 @@ def semver(value):
 def private_file(name):
     lowered = name.lower()
     return (name == ".DS_Store" or lowered.startswith((".env", "id_rsa", "id_ed25519"))
-            or any(word in lowered for word in ("secret", "credential", "api_key", "token", "private_key", "password"))
+            or any(word in lowered for word in ("secret", "credential", "api_key", "private_key", "password"))
+            or bool(re.fullmatch(r"\.?(?:(?:access|refresh|auth|bearer|api)[_-])?tokens?(?:\.(?:json|txt|ya?ml))?", lowered))
             or Path(name).suffix.lower() in SKIP_SUFFIXES)
 
 
@@ -216,10 +217,11 @@ def prepare(source, current, plugin_id, previous=None, commit=None):
         core = semver(newest)[0]
         version = source_version if semver(source_version) > semver(newest) else f"{core[0]}.{core[1]}.{core[2] + 1}"
         overlay = dict(changed)
+        repository = manifests[MANIFESTS[0]].get("repository", REPOSITORY)
         for name, value in manifests.items():
             value["version"] = version
-            if name == MANIFESTS[0] and "repository" not in value:
-                value["repository"] = REPOSITORY
+            if "repository" not in value:
+                value["repository"] = repository
             overlay[name] = (json.dumps(value, ensure_ascii=False, indent=2) + "\n").encode("utf-8")
         report["status"] = "ready"
     manifest_bytes = {name: overlay.get(name, actual[name]) for name in manifests}
