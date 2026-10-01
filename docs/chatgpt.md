@@ -6,7 +6,7 @@
 
 Plugin Creator가 계정·워크스페이스에 제공되고 플러그인 사용 권한이 있을 때 사용할 수 있는 경로입니다. 현재 계정에서 실제 생성·설치·실행했는지는 별도로 확인해야 합니다. [공식 생성 절차](https://learn.chatgpt.com/docs/build-plugins).
 
-1. 저장소 루트에서 `python3 scripts/build_packages.py`를 실행합니다. `dist/personal-cowork-chatgpt-context-0.2.0.md`가 공통 스킬과 상태 도구 안내를 담은 단일 자료 파일로 생성됩니다.
+1. 저장소 루트에서 `python3 scripts/build_packages.py`를 실행합니다. `dist/personal-cowork-chatgpt-context-0.3.0.md`가 공통 스킬과 상태 도구 안내를 담은 단일 자료 파일로 생성됩니다.
 2. ChatGPT의 새 Chat 또는 Work에서 `@`를 입력하고 메뉴의 **Plugin Creator**를 선택합니다.
 3. 생성한 Markdown 파일을 작업 지침 자료로 첨부하고 다음 요청을 보냅니다. 일반 첨부는 생성 과정의 자료 제공이며 자동 설치가 아닙니다.
 
@@ -66,3 +66,5 @@ category,amount_krw
 ## 업데이트 적용
 
 GitHub의 소스 업데이트와 기존 ChatGPT 플러그인의 지침 갱신은 별개입니다. Plugin Creator로 만든 플러그인은 최신 Markdown을 다시 생성해 제공하고 기존 플러그인의 지침 수정 절차를 따라야 합니다. 관리자가 가져온 GitHub 마켓플레이스는 해당 워크스페이스의 동기화 절차를 사용합니다. 커밋·푸시만으로 모든 계정에 최신 지침이 반영됐다고 표시하지 않습니다.
+
+소유자가 자동 갱신을 허용한 개인용 플러그인은 데스크톱 예약 작업으로 GitHub의 변경을 확인하고 기존 계정 플러그인을 갱신할 수 있습니다. [자동 갱신 안내](automatic-updates.md)에 대상 파일, 버전 규칙과 실행 조건을 설명합니다. 현재 프로젝트의 직접 연결 Codex 스킬, 다른 컴퓨터의 복제본, 별도로 업로드한 독립 스킬은 각각 별개의 설치 경로입니다.

@@ -16,6 +16,8 @@ The repository owner requested a public GitHub repository and commit/push after 
 
 This policy applies when carrying out requested updates. It does not create a background watcher or authorize arbitrary changes to other repositories.
 
+The owner separately requested automatic GitHub-to-ChatGPT updates for their existing private Personal Cowork plugin on 2026-10-01. An authorized heartbeat may inspect this repository's `main` and synchronize the included skill through Plugin Creator, preserving the selected plugin ID, private audience, metadata, and default prompts. Runtime configuration and backend IDs stay outside the public repository. This authorization does not cover other plugins, public catalog publication, new integrations, or executing scripts obtained from future remote commits. Follow `docs/automatic-updates.md`; verify each saved release before advancing sync state.
+
 ## Validation and documentation
 
 - The task-state helper supports Python 3.9+ using only the standard library.
