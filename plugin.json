@@ -1,0 +1,25 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "personal-cowork",
+  "version": "0.1.0",
+  "description": "Complete delegated work with available ChatGPT and Codex tools, save progress, and verify deliverables.",
+  "author": {
+    "name": "Personal Cowork"
+  },
+  "keywords": ["workflow", "files", "research", "verification"],
+  "extensions": {
+    "com.openai": {
+      "interface": {
+        "displayName": "Personal Cowork",
+        "shortDescription": "Delegate work, verify output",
+        "longDescription": "Use existing ChatGPT and Codex tools to complete authorized multi-step work. Preserve checkpoints, resume from current evidence, and deliver verified results. This personal plugin does not add computer access, background execution, or a separate AI service.",
+        "developerName": "Personal Cowork",
+        "category": "Productivity",
+        "capabilities": [],
+        "defaultPrompt": ["Use Personal Cowork to complete this task and verify the final result."],
+        "composerIcon": "./assets/icon.svg",
+        "logo": "./assets/icon.svg"
+      }
+    }
+  }
+}

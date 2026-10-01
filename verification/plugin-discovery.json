@@ -1,0 +1,8 @@
+{
+  "cli_version": "0.159.1",
+  "cwd": "<workspace>",
+  "exit_code": 0,
+  "marketplace": "personal-cowork-local",
+  "matches": [],
+  "publication_note": "Absolute host workspace paths replaced with <workspace>; this is a dated probe snapshot, not a new probe."
+}

@@ -1,0 +1,20 @@
+{
+  "name": "personal-cowork-local",
+  "interface": {
+    "displayName": "Personal Cowork Local"
+  },
+  "plugins": [
+    {
+      "name": "personal-cowork",
+      "source": {
+        "source": "local",
+        "path": "."
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    }
+  ]
+}

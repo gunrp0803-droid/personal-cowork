@@ -1,0 +1,6 @@
+interface:
+  display_name: "Personal Cowork"
+  short_description: "맡긴 작업을 실행하고 진행 상태와 결과 검증 근거를 보관합니다"
+  default_prompt: "Use $personal-cowork to complete this task with available tools and verify the result."
+policy:
+  allow_implicit_invocation: true

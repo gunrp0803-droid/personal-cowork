@@ -1,0 +1,48 @@
+{
+  "test": "synthetic spending task",
+  "row_count": 7,
+  "period": [
+    "2026-09-14",
+    "2026-09-20"
+  ],
+  "currency": "KRW",
+  "total": "55800",
+  "categories": {
+    "교통": {
+      "record_count": 2,
+      "total": "5300"
+    },
+    "식비": {
+      "record_count": 3,
+      "total": "23500"
+    },
+    "학습": {
+      "record_count": 2,
+      "total": "27000"
+    }
+  },
+  "source_and_test_input_bytes_match": true,
+  "task_status": "completed",
+  "completed_steps": 3,
+  "passed_criteria": 3,
+  "files": {
+    "examples/spending/by-category.csv": {
+      "size_bytes": 80,
+      "sha256": "5e840d192a3aeb0f8d6c8b856349b2cc7a08b70818aa336808072739677634c4"
+    },
+    "examples/spending/inputs/context.md": {
+      "size_bytes": 425,
+      "sha256": "7cf912606045ab7673956f7fe17ce6621a6a6ecd572be6e46e2f0d7bf355f284"
+    },
+    "examples/spending/inputs/spending.csv": {
+      "size_bytes": 245,
+      "sha256": "c3b3e25521c39bae6c1d9ce8fc98c23ade56c00226d0ff90d6ca5b2ce4b084f7"
+    },
+    "examples/spending/spending-summary.md": {
+      "size_bytes": 593,
+      "sha256": "01beef2e5ec3d93ff70f30e2e8ab483d45608624172cdf08cb9d9be99ee2a0ff"
+    }
+  },
+  "limits": "Local file workflow only; no ChatGPT account installation, external app save, unattended execution, or token benchmark verified.",
+  "publication_note": "File paths refer to public copies; input and output bytes match the original local test."
+}

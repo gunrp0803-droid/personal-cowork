@@ -1,0 +1,26 @@
+{
+  "cli_version": "0.159.1",
+  "cwd": "<workspace>",
+  "non_git": true,
+  "matches": [
+    {
+      "name": "personal-cowork",
+      "description": "Complete delegated multi-step work across available files, code, research, and connected apps; preserve progress and verify the finished deliverable. Use when the user hands over a concrete task to finish or resume. A factual question, explanation, or brainstorming alone does not need this workflow.",
+      "enabled": true,
+      "path": "<workspace>/outputs/personal-cowork/skills/personal-cowork/SKILL.md",
+      "scope": "repo",
+      "interface": {
+        "displayName": "Personal Cowork",
+        "shortDescription": "맡긴 작업을 실행하고 진행 상태와 결과 검증 근거를 보관합니다",
+        "iconSmall": null,
+        "iconLarge": null,
+        "iconSmallUrl": null,
+        "iconLargeUrl": null,
+        "brandColor": null,
+        "defaultPrompt": "Use $personal-cowork to complete this task with available tools and verify the result."
+      }
+    }
+  ],
+  "relevant_errors": [],
+  "publication_note": "Absolute host workspace paths replaced with <workspace>; this is a dated probe snapshot, not a new probe."
+}
