@@ -9,6 +9,12 @@ Turn the user's delegated goal into a completed, reviewable result using the hos
 
 This skill supplies a workflow, not an independent execution engine. Its helper only records state. It does not grant file or app access, call a model, start a background worker, or measure token usage. Never claim those capabilities merely because this skill is installed.
 
+## Match the current environment
+
+Use the tools actually exposed in this conversation, whether it is ChatGPT Chat, Work, or Codex. An installed workflow does not imply access to a shell, Python, a local folder, a connected app, or durable storage. In Chat, work from the provided text, uploads, and available tools. In Work Cloud, resolve paths inside the current cloud workspace; never reuse a local computer's paths or assume that its apps and settings were inherited. In local Work or Codex, inspect the approved workspace and available tools.
+
+If a requested action needs a tool that is missing, complete the independent work and name the exact remaining action. Do not claim to have created a file, saved to an app, or run a check by writing the corresponding text in the response. Use links returned by the host for cloud files and observed local file paths for local outputs.
+
 ## Establish the task
 
 - Inspect the inputs and available tools before choosing an approach. Resolve actual workspace, file, and service identities; do not invent a path or integration.
@@ -18,9 +24,9 @@ This skill supplies a workflow, not an independent execution engine. Its helper 
 
 ## Preserve useful checkpoints
 
-When there is a writable workspace and Python, use [the task-state helper](references/task-state.md). Read that reference only when starting, updating, or resuming a persistent task. It stores the goal, steps, criteria, evidence, and artifact fingerprints under `work/cowork/` in the task workspace. One agent owns state writes; other agents return evidence to it.
+When the host exposes Python execution, a writable workspace, and an accessible copy of the packaged script, use [the task-state helper](references/task-state.md). Resolve the script's actual location; a URL or instruction attachment alone is not an installed executable. Read that reference only when starting, updating, or resuming a persistent task. It stores the goal, steps, criteria, evidence, and artifact fingerprints under `work/cowork/` in the task workspace. One agent owns state writes; other agents return evidence to it.
 
-For a simple task, use the host's plan state instead of creating a ledger. If Python is unavailable but files can be written, maintain the equivalent short Markdown record under `work/cowork/`. If neither is available, track progress in the conversation and disclose that persistence across sessions is not verified. Do not claim a checkpoint was saved unless the save succeeded.
+For a simple task, use the host's plan state instead of creating a ledger. If the executable helper cannot be used but files can be written, maintain the equivalent short Markdown record under `work/cowork/`. If neither is available, track progress in the conversation and provide a concise handoff with the goal, completed work, unresolved work, and input references when pausing. Disclose that persistence across sessions is not verified. Do not claim a checkpoint was saved unless the save succeeded.
 
 Checkpoint after a meaningful milestone, before yielding for required input, and before finishing. Record what was actually observed, a clear next action, and the specific unresolved dependency. Keep pending work pending. Do not label a task complete merely because output was drafted.
 

@@ -1,0 +1,68 @@
+{
+  "method": "plugin/read",
+  "marketplacePath": "<workspace>/outputs/personal-cowork/.agents/plugins/marketplace.json",
+  "cliVersion": "codex-cli 0.159.1",
+  "nativeResult": {
+    "marketplaceName": "personal-cowork-local",
+    "marketplacePath": "<workspace>/outputs/personal-cowork/.agents/plugins/marketplace.json",
+    "description": "Complete delegated work with available ChatGPT and Codex tools, save progress, and verify deliverables.",
+    "summary": {
+      "id": "personal-cowork@personal-cowork-local",
+      "name": "personal-cowork",
+      "localVersion": "0.2.0",
+      "version": null,
+      "source": {
+        "type": "local",
+        "path": "<workspace>/outputs/personal-cowork"
+      },
+      "installed": false,
+      "enabled": false,
+      "availability": "AVAILABLE",
+      "installPolicy": "AVAILABLE",
+      "authPolicy": "ON_INSTALL",
+      "interface": {
+        "displayName": "Personal Cowork",
+        "shortDescription": "Delegate work, verify output",
+        "longDescription": "Use existing ChatGPT and Codex tools to complete authorized multi-step work. Preserve checkpoints, resume from current evidence, and deliver verified results. This personal plugin does not add computer access, background execution, or a separate AI service.",
+        "developerName": "Personal Cowork",
+        "category": "Productivity",
+        "capabilities": [],
+        "websiteUrl": null,
+        "privacyPolicyUrl": null,
+        "termsOfServiceUrl": null,
+        "defaultPrompt": [
+          "Use Personal Cowork to complete this task and verify the final result."
+        ],
+        "brandColor": null,
+        "composerIcon": "<workspace>/outputs/personal-cowork/assets/icon.svg",
+        "composerIconUrl": null,
+        "logo": "<workspace>/outputs/personal-cowork/assets/icon.svg",
+        "logoDark": null,
+        "logoUrl": null,
+        "logoUrlDark": null,
+        "screenshots": [],
+        "screenshotUrls": []
+      }
+    },
+    "skills": [
+      {
+        "name": "personal-cowork:personal-cowork",
+        "path": "<workspace>/outputs/personal-cowork/skills/personal-cowork/SKILL.md",
+        "enabled": true,
+        "interface": {
+          "displayName": "Personal Cowork",
+          "shortDescription": "맡긴 작업을 실행하고 진행 상태와 결과 검증 근거를 보관합니다",
+          "iconSmall": null,
+          "iconLarge": null,
+          "iconSmallUrl": null,
+          "iconLargeUrl": null,
+          "brandColor": null,
+          "defaultPrompt": "Use Personal Cowork to complete this task with available tools and verify the result."
+        }
+      }
+    ],
+    "apps": [],
+    "mcpServers": []
+  },
+  "publication_note": "Absolute host workspace paths replaced with <workspace>; native Codex parsing only, not ChatGPT account installation."
+}

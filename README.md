@@ -1,6 +1,10 @@
-# Personal Cowork 0.1.0
+# Personal Cowork 0.2.0
 
 ChatGPT와 Codex에 목표를 맡기면 사용 가능한 도구로 작업을 진행하고, 결과를 확인한 뒤 전달하도록 구성한 개인용 플러그인입니다. Anthropic 또는 OpenAI의 공식 제품이 아닙니다.
+
+**현재 실제 호스트 탐색·작업 실행 검증은 Codex에서 수행했습니다. ChatGPT 일반 Chat과 Work에서는 별도 계정 설치와 실행 확인이 필요합니다.** 공통 형식의 패키지가 준비된 상태와 계정에 설치된 상태를 구분합니다.
+
+ChatGPT에서 사용할 경우 [Chat·Work 설치 안내](docs/chatgpt.md)를 먼저 확인하십시오. Plugin Creator에 제공할 단일 Markdown 자료와 스킬·플러그인 ZIP을 생성할 수 있습니다. 설치 메뉴가 없는 환경에서는 현재 대화에 지침을 제공하는 방식을 사용합니다.
 
 ## 구현한 기능
 
@@ -48,15 +52,23 @@ $personal-cowork work/cowork에 저장된 미완료 작업을 확인하고 이�
 
 ## ChatGPT와 플러그인 형태로 사용하기
 
-루트 `plugin.json`과 `skills/`가 공식 Agent Plugins 형식을 따릅니다. 이 패키지는 ChatGPT와 Codex용 로컬 마켓플레이스에 등록할 수 있습니다. 패키지의 `.agents/plugins/marketplace.json`에는 `personal-cowork-local` 항목이 준비되어 있습니다. Codex의 명시적 `plugin/read`로 패키지 해석을 확인했습니다. 검증 당시 개발 환경에서는 플러그인 자체를 설치하지 않고 스킬을 직접 연결했습니다.
+루트 `plugin.json`과 `skills/`가 공식 Agent Plugins 형식을 따릅니다. 공식 안내는 설치된 플러그인의 Chat과 Work 사용을 지원하며, 실제 이용은 계정·워크스페이스·실행 환경에 따라 달라집니다. 패키지의 `.agents/plugins/marketplace.json`에는 `personal-cowork-local` 항목이 준비되어 있습니다. Codex의 명시적 `plugin/read`로 패키지 해석을 확인했습니다. [공식 사용 환경](https://learn.chatgpt.com/docs/plugins).
 
-로컬 마켓플레이스를 지원하는 데스크톱 환경에서 Plugins의 로컬 소스를 확인하고 설치한 뒤 새 대화에서 선택합니다. ChatGPT에서는 `@` 메뉴로 설치된 플러그인 또는 스킬을 선택합니다. 실제 계정의 설치 메뉴와 지원 여부는 별도 확인이 필요합니다.
+ChatGPT에서는 지원되는 **Plugin Creator**, **스킬 업로드**, **관리자의 GitHub 마켓플레이스 가져오기** 중 계정에서 제공되는 경로로 등록한 뒤 사용합니다. 구체적인 절차와 권한은 [Chat·Work 설치 안내](docs/chatgpt.md)에 있습니다. 로컬 Codex CLI 설치만으로 웹 ChatGPT 계정에 등록됐다고 판단하지 않습니다.
 
 ZIP을 일반 ChatGPT 대화에 첨부하는 것만으로 설치된다고 보장하지 않습니다. 웹에서 조직 또는 공개 배포를 하려면 지원하는 플러그인 생성·배포 절차와 권한이 필요합니다. GitHub 소스 공개와 ChatGPT 플러그인 카탈로그 등록은 별개의 작업입니다. 이 버전에서는 ChatGPT 계정 설치, 외부 서비스 연결, 플러그인 카탈로그 게시를 수행하지 않았습니다.
 
 다른 위치에 압축을 풀어 설치할 수 있도록 패키지 안에도 `.agents/plugins/marketplace.json`을 포함했습니다. 이 파일의 로컬 소스는 패키지 루트 `.`입니다.
 
 ZIP에서 설치할 때도 압축을 푼 `personal-cowork` 폴더에서 위와 같은 마켓플레이스 등록·설치 명령을 실행합니다.
+
+## ChatGPT 자료와 패키지 생성
+
+```sh
+python3 scripts/build_packages.py
+```
+
+`dist/`에 버전을 포함한 플러그인 ZIP, 스킬 ZIP, ChatGPT에 지침 자료로 제공할 Markdown 파일을 만듭니다. 지침은 공통 `SKILL.md`와 상태 도구 참고 문서에서 생성하므로 별도의 ChatGPT 지침 복사본을 수동으로 관리하지 않습니다. ZIP 생성은 업로드 승인이나 계정 설치를 의미하지 않습니다.
 
 ## 상태 저장 도구와 검증
 

@@ -1,11 +1,12 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "personal-cowork",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Complete delegated work with available ChatGPT and Codex tools, save progress, and verify deliverables.",
   "author": {
     "name": "Personal Cowork"
   },
+  "repository": "https://github.com/gunrp0803-droid/personal-cowork",
   "keywords": ["workflow", "files", "research", "verification"],
   "extensions": {
     "com.openai": {
